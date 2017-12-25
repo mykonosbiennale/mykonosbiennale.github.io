@@ -10,13 +10,14 @@ from pages.views import PageMixin
 
 
 class ProjectDetail(PageMixin, DetailView):
-    queryset = models.ProjectX.objects.all()
+    queryset = models.ProjectSeason.objects.all()
     template_name='festival/project_detail.html'
       
     def seo(self, context):
+        print context
         return {
-            'title': 'Mykonos Biennale 2015 - Biennale Art',
-            'description': "The complete list of art shown in the Mykonos Biennale",
+            'title': 'Mykonos Biennale {} - {} Art'.format(context['object'].festival.label, context['object'].project.title),
+            'description': (context['object'].statement if context['object'].project.statement else 'Art exhibited in the {}'.format(context['object'].project.title)),
             'url': "/artfestival/art", 
         }
 
@@ -35,8 +36,9 @@ class ProjectDetail(PageMixin, DetailView):
         if not queryset:
             queryset = self.queryset
         queryset = queryset.filter(festival__year=int(year))
+        queryset = queryset.filter(project__slug=slug)
         try:
-            return super(ProjectDetail, self).get_object(queryset)
+            return queryset.get()
         except Http404:
             if slug != 'all':
                 raise
@@ -50,8 +52,8 @@ class ProjectDetail(PageMixin, DetailView):
         context['year'] = year
         context['art_shown'] = (art for art in models.Art.objects.filter(leader=True, project_x__festival__year=year) if art.artist.visible)
         #random.shuffle(context['art_shown'])
-        context['projects']= (ps.project for ps in models.ProjectSeason.objects.filter(festival__year=year) if ps.art_set.filter(show=True).count())
-        #context['years'] = set(project.year for project in context['projects'] )
+        context['projects'] = (ps.project for ps in models.ProjectSeason.objects.filter(festival__year=year) if ps.art_set.filter(show=True).count())
+        #context['years'] = set(project.festival.year for project in context['projects'] )
         return context
 
 
@@ -82,8 +84,9 @@ class ArtList(PageMixin, BuildableListView):
 class ArtistList(PageMixin, ListView):
     queryset = models.Artist.objects.filter(visible=True).order_by('name')
     def seo(self, context):
+        print self.seo, context.keys()
         return {
-            'title': 'Mykonos Biennale 2015 - Antidote Artists',
+            'title': 'Mykonos Biennale Participants',
             'description': "The complete list of artists partisipating in the Mykonos Biennale",
             'url': "/artfestival/artists", 
         }
@@ -166,8 +169,8 @@ class ArtistDetail(PageMixin, DetailView):
 
     def seo(self, context):
         artist = self.getObject(context)
-        title =  "Mykonos Biennale 2015 - {} - {}".format(artist.event, artist.name)
-        description = "Biennale page for {}".format(artist.name)
+        title =  "Mykonos Biennale  {} artist - {}".format(artist.event, artist.name)
+        description = "The Mykonos Biennale presents {} in the {}".format(artist.name, artist.event)
         url = "/artfestival/artist/{}".format(artist.slug)
         image = artist.artwork() 
         if not image: image = artist.headshot.url if artist.headshot else ''
