@@ -9,6 +9,9 @@ import models
 from pages.views import PageMixin
 
 
+
+
+
 class ProjectDetail(PageMixin, DetailView):
     queryset = models.ProjectSeason.objects.all()
     template_name='festival/project_detail.html'
@@ -72,13 +75,12 @@ class ArtList(PageMixin, BuildableListView):
         context = super(ArtList, self).get_context_data(**kwargs)
         #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
         #a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
-        a = [art for art in models.Art.objects.filter(leader=True) if art.artist.visible]
-        random.shuffle(a)
+        a = [art for art in models.Art.objects.filter(leader=True, artist__visible=True)]
+        # random.shuffle(a)
         context['art_shown'] = a
         project_slug = self.request.GET.get('project')
         context['choice'] = models.ProjectX.objects.get(slug=project_slug) if project_slug else 'all'
-        context['projects'] = (project for project in models.ProjectX.objects.all() if project.art_set.count())
-        
+        # context['projects'] = (project for project in models.ProjectX.objects.all())
         return context
 
 class ArtistList(PageMixin, ListView):
@@ -143,7 +145,7 @@ class ArtistList(PageMixin, ListView):
                 art_q = models.Art.objects.filter(project_x = context['project'])
                 context['title'] = "{} - {}".format(context['project'].festival, context['project'].project.title)
         print art_q
-        context['artists'] = set(art.artist for art in art_q  if art.artist.visible)
+        context['artists'] = sorted(set(art.artist for art in art_q  if art.artist.visible), key=lambda x: x.name)
         context['breadcrumbs'] = self.breadcrumbs(context)
 
         random.shuffle(list(context['artists']))

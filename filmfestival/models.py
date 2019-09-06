@@ -290,7 +290,15 @@ class Film(models.Model):
     def get_absolute_url(self):
         return reverse('film-detail', args=[self.slug])
     
-    
+    @property
+    def thumbnail(self):
+        if self.poster:
+            return self.poster
+        else:
+            stills = self.filmfestival_image_related.all()
+            if stills:
+                return stills[0].image
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title+'-'+self.dir_by)
         super(Film, self).save(*args, **kwargs)

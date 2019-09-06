@@ -32,6 +32,7 @@ class FilmList(ListView):
     film_type = models.Film.DRAMATIC_NIGHTS
     queryset = models.Film.objects.filter(status='SELECTED').order_by('title')
 
+
     def get_queryset(self):
         queryset = super(FilmList, self).get_queryset()
         queryset = queryset.filter(project__festival__year=int(self.kwargs.get('year', CURRENT_YEAR)))
@@ -62,6 +63,14 @@ class FilmList(ListView):
             'image': 'http://mykonosbiennale.org/static/images/mykonos-biennale-logo.png',
         }
         return seo_data
+
+
+class FilmList(ListView):
+    queryset = models.Film.objects.filter(status='SELECTED').order_by('title')
+    template_name = 'filmfestival/film_list-2.html'
+
+
+
 
 class FilmProjectList(ProjectView):
     sub_title =''

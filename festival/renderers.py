@@ -24,4 +24,4 @@ class ArtFestivalRenderer(StaticSiteRenderer):
         return list(paths)
     
 
-renderers = [ArtFestivalRenderer, ]
+# renderers = [ArtFestivalRenderer, ]

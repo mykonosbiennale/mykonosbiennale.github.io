@@ -6,12 +6,14 @@ from django.views.decorators.cache import cache_page
 
 import views
 urlpatterns = patterns('',
-	url(r'^art/$', views.ProjectDetail.as_view(), {'slug': 'all'}, name='art'), 
+	url(r'^art/$', views.ArtList.as_view(), {'slug': 'all'}, name='art'),
+	# url(r'^art/$', views.ProjectDetail.as_view(), {'slug': 'all'}, name='art'),
 	url(r'^art/(?P<year>[0-9]+)/$', views.ProjectDetail.as_view(), {'slug': 'all'}, name='art'), 				   
 	url(r'^art/(?P<slug>[^/]+)/$', views.ProjectDetail.as_view(), name='project'), 
-	url(r'^art/(?P<year>[0-9]+)/(?P<slug>[^/]+)/$', views.ProjectDetail.as_view(), name='project'), 	
-					  
-	
+	url(r'^art/(?P<year>[0-9]+)/(?P<slug>[^/]+)/$', views.ProjectDetail.as_view(), name='project'),
+
+
+
 	url(r'^treasure-hunt-artists/$', views.TreasureHuntArtists.as_view(), name='treasure-hunt'),
 	url(r'^(?P<slug>[^/]+)/artists/$', views.ArtistList.as_view(), name='artist-list'),
 	url(r'^artists/$', views.ArtistList.as_view(), name='artist-list'),

@@ -16,6 +16,7 @@ class PageAdmin(admin.ModelAdmin):
     list_filter = [ 'visible',] 
     list_editable = ['order']
     inlines = [PanelInline]
+    save_as = True
 admin.site.register(models.Page, PageAdmin)    
 
 class PanelAdmin(admin.ModelAdmin):
@@ -24,6 +25,7 @@ class PanelAdmin(admin.ModelAdmin):
     search_fields = ['title', 'content']
     list_filter = [ 'visible', 'page'] 
     list_editable = ['order']
+    save_as = True
 admin.site.register(models.Panel, PanelAdmin)
 
 
