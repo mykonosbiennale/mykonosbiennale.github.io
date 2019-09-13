@@ -90,7 +90,6 @@ class ProjectX(models.Model):
     festival = models.ManyToManyField(Festival, through='ProjectSeason')
     statement = models.TextField(default='')
 
-
     @property
     def label(self):
         return '{}-{}'.format(self.festival.label, self.title)
@@ -179,9 +178,10 @@ class Artist(models.Model):
 
     def art_by_project(self):
         projects = collections.defaultdict(list)
+
         for art in self.art_set.filter(show=True):
           projects[art.project_x].append(art)
-        return [ {'project': project, 'art':projects[project]} for project in sorted(projects, key=lambda x:x.project.title)]
+        return [ {'project': project, 'art':projects[project]} for project in reversed(sorted(projects, key=lambda x:x.project.festival))]
 
     def artwork(self):
         try:
@@ -206,12 +206,10 @@ class Art(models.Model):
     photo = models.ImageField (upload_to=artNamer, max_length=256, blank=True)
 
     def image_tag(self):
-      return u'<img height="75" src="%s" />' % self.photo.url
+      return u'<img height="75" src="%s" />' % self.photo.url if self.photo else ""
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 
-
-  
     #project = models.ForeignKey('Project')
 
     def __unicode__(self):

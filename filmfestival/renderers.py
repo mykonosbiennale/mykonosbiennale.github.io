@@ -22,4 +22,4 @@ class FilmFestivalRenderer(StaticSiteRenderer):
                 paths.add('/filmfestival/{}/{}/'.format(film.project.festival.year, film.project.slug))
         return list(paths)
 
-# renderers = [FilmFestivalRenderer, ]
+renderers = [FilmFestivalRenderer, ]

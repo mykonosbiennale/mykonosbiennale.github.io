@@ -15,13 +15,20 @@ from pages.views import PageMixin
 class ProjectDetail(PageMixin, DetailView):
     queryset = models.ProjectSeason.objects.all()
     template_name='festival/project_detail.html'
-      
+
+
     def seo(self, context):
+        try:
+            d = (context['object'].statement if context[
+                'object'].project.statement else 'Art exhibited in the {}'.format(context['object'].project.title))
+        except:
+            d = ''
+
         print context
         return {
             'title': 'Mykonos Biennale {} - {} Art'.format(context['object'].festival.label, context['object'].project.title),
-            'description': (context['object'].statement if context['object'].project.statement else 'Art exhibited in the {}'.format(context['object'].project.title)),
-            'url': "/artfestival/art", 
+            'description': d,
+            'url': "/artfestival/art",
         }
 
 #     def get(self, request, *args, **kwargs):

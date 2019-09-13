@@ -19,6 +19,7 @@ def path_and_rename(instance, filename):
     
     
 def poster_path(instance, filename):
+    return filename
     base, ext = os.path.splitext(filename)
     # get filename
     slug = slugify(instance.title+'-'+instance.dir_by)

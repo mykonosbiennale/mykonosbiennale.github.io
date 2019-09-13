@@ -1,9 +1,10 @@
+import  datetime
 from bakery.views import BuildableDetailView
 from django.shortcuts import render_to_response
 from django.views.generic import View,ListView
 
-CURRENT_YEAR='2017'
-
+NOW=datetime.datetime.now()
+CURRENT_YEAR = NOW.year if NOW.year % 2 == 1 else NOW.year-1
 import models
 from festival.models import Festival
 from pages.views import PageMixin, ProjectView, ProjectEntryView

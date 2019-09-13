@@ -4,7 +4,7 @@
 {% load staticfiles %}
 {% load pipeline %}
 
-
+<!-- artist_list.html -->
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
     <head>
@@ -28,9 +28,9 @@
 <script src="{% static "js/components/grid.min.js" %}"></script>
 {% endcompress %}
 
-      
-      
-      
+
+
+
 <style>
     .uk-panel {
         padding: 50px;
@@ -54,14 +54,14 @@
 
     </head>
 
-<body class="uk-height-1-1"  id="aritist">
+<body class="uk-height-1-1"  id="aritist_list">
 <div class="uk-container uk-container-center uk-margin-large">
 {% include "nav_bar.html" %}
 
 
 
 
-<div class="uk-grid"  id="art">
+<div class="uk-grid"  id="artist_list">
 
 
 
@@ -91,6 +91,6 @@
          {% endfor %}
     </div>
 </div>
-    
+
 </body>
 </html>
