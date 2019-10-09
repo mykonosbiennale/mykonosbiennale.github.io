@@ -15,7 +15,7 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def project_art(context, **kwargs):
     projects = Project.objects.filter(**kwargs)
-    context['art'] = Art.objects.filter(project__in=projects).order_by('artist__name')
+    context['art'] = Art.objects.filter(project__in=projects, artist__visible=True).order_by('artist__name')
     return ''
 
 @register.simple_tag(takes_context=True)
@@ -24,5 +24,5 @@ def project_artists(context, **kwargs):
     #     art = project_art(**kwargs).distinct('artist__name')
     # except NotImplementedError:
     project_art(context, **kwargs)
-    context['artists'] = sorted(set(art.artist for art in context['art']), key=lambda x: x.name.split()[-1])
+    context['artists'] = sorted(set(art.artist for art in context['art'] if art.artist.visible), key=lambda x: x.name.split()[-1])
     return ''

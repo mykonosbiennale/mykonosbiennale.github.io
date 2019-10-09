@@ -91,7 +91,7 @@
                                                 {% for art in project.art %}
                                                     <div class="uk-panel">
                                                         {% if art.photo %}
-                                                            {% thumbnail art.photo  "400"   crop="noop" padding=False  quality=60 as photo %}
+                                                            {% thumbnail art.photo  "400x600" crop="noop"  upscale=True padding=False as photo %}
                                                             <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" width="{{photo.width}}" height="{{photo.height}}"class="uk-responsive-width"
                                                             title="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot"
                                                             alt="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" /></a>

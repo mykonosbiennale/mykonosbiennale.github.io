@@ -114,6 +114,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 )
 
 ROOT_URLCONF = 'mykonosbiennale.urls'
@@ -329,6 +330,8 @@ THUMBNAIL_COLORSPACE = None
 THUMBNAIL_PRESERVE_FORMAT = True
 THUMBNAIL_DEBUG = False
 THUMBNAIL_PREFIX='mykonos-biennale-cache'
+THUMBNAIL_UPSCALE=True
+THUMBNAIL_PADDING_COLOR='#FF0000'
 import logging
 from sorl.thumbnail.log import ThumbnailLogHandler
 handler = ThumbnailLogHandler()

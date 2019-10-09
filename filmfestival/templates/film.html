@@ -55,7 +55,7 @@
 			    </header>
 
 	   			<div class="uk-comment-body">
-	    			<%= film.synopsis %>
+	    			<%= film.synopsis | safe %>
 	     			<hr class="uk-article-divider">
 	     			<h3> Cast </h3>
 					<ul class="uk-list">
@@ -76,7 +76,7 @@
 						  <% if (film.art_directors) { %>  <dt>Art directors</dt><dd> <%= film.art_directors %></dd> <% } %>
 						  <% if (film.editors) { %>  <dt>Editors</dt><dd> <%= film.editors %></dd> <% } %>
 						  <% if (film.sound_editors) { %>  <dt>Sound editors</dt><dd> <%= film.sound_editors %></dd> <% } %>
-						  <% if (film.composers) { %>  <dt>Composers</dt><dd> <%= film.composers %></dd> <% } %>
+						  <% if (film.composers ) { %>  <dt>Composers</dt><dd> <%= film.composers %></dd> <% } %>
 						</dl>
 					<hr class="uk-article-divider">
 					<div class="uk-grid">
@@ -93,7 +93,7 @@
 			     			<h3> Screenings </h3>
 							<ul class="uk-list">
 						   		<% _.each(film.screenings.split(',') ,function( screening ){ %>
-						   		 	<li> <%= screening %></li>
+						   		 	<li> <%= screening | safe %></li>
 							 	<% }); %>
 							</ul>
 			 		<% } %>

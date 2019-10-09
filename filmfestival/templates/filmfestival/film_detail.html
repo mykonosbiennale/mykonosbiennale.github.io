@@ -74,9 +74,9 @@
                 {% endif %}</div>
         <div class="uk-comment-body" style="padding-top:10px;">
             {% if film.synopsis %}
-            {{film.synopsis}}
+            {{film.synopsis | safe}}
             {% else %}
-            {{film.log_line}}
+            {{film.log_line | safe}}
             {% endif %}
 
 
@@ -153,7 +153,7 @@
         
         {% if film.directors_statement %} 
         <h3>Directors Statement</h3>
-        <p>{{film.directors_statement|linebreaksbr}}</p>
+        <p>{{film.directors_statement | safe|linebreaksbr}}</p>
         {% endif %}
 
 
