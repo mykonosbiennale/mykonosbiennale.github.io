@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'sortedm2m',
     'minipub',
     'versatileimagefield',
+    'import_export',
 
     #'media_library',
     #'multilingual_tags',

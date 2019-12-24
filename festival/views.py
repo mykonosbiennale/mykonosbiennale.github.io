@@ -118,7 +118,7 @@ class ArtistList(PageMixin, ListView):
         artists = collections.default(set)
         festivals = set()
         projects = set()
-        for art in models.Art.objects.filter(leader=True):
+        for art in models.Art.objects.filter(leader=True, show=True, art__artist__visible=True):
             artists[art.artist].add(art.project_x)
             artists[art.artist].add(art.project_x.festival)
             festivals.add(art.project_x.festival)

@@ -26,3 +26,12 @@ def project_artists(context, **kwargs):
     project_art(context, **kwargs)
     context['artists'] = sorted(set(art.artist for art in context['art'] if art.artist.visible), key=lambda x: x.name.split()[-1])
     return ''
+
+@register.simple_tag(takes_context=True)
+def artists_by_id(context, *args):
+    context['artists'] = Artist.objects.filter(id__in=args, visible=True).order_by('artist__name')
+    return ''
+
+@register.assignment_tag
+def artist(id):
+     return Artist.objects.get(id = id)

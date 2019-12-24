@@ -139,3 +139,6 @@ class ScreeningAdmin(admin.ModelAdmin):
         return super(ScreeningAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
    
 admin.site.register(models.Screening, ScreeningAdmin) 
+
+
+# admin.site.register(models.Material)
