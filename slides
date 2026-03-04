@@ -339,6 +339,67 @@ It should take **about 5–6 minutes to present**.
 
 ---
 
+Phase 1 — Artifact Extraction & Scoping
+Days 1–3
+Identify a representative subset of the rules engine.
+Collect artifacts:
+mapping tables
+legacy code modules
+example transactions (input/output)
+Prepare artifacts for analysis.
+Phase 2 — Knowledge Base Construction
+Days 4–7
+Create the structured knowledge base used by the AI system.
+Tasks:
+normalize mapping tables
+extract rule-related code fragments
+structure transaction examples
+construct the Canonical Rule Model (IR)
+build the rule dependency graph
+Output:
+AI-ready structured rule knowledge base.
+Phase 3 — Prompt & Agent Development
+Days 8–11
+Design the AI interaction layer.
+Tasks:
+develop system prompts for rule analysis
+implement specialized agents
+Example agents:
+Rule explanation agent
+Rule chain reconstruction agent
+Lineage query agent
+Regression test generation agent
+Documentation generation agent
+Expose the rule model through an MCP service.
+Phase 4 — AI Interface & Tools
+Days 12–15
+Build the user interaction layer.
+Components:
+simple chat-style UI
+query interface for rule analysis
+rule explanation tool
+lineage tracing tool
+Users can ask questions such as:
+Explain how this rule produces GL account X
+Trace lineage for this transaction
+Which rules depend on this mapping row
+Phase 5 — Validation & Testing
+Days 16–18
+Validate the reconstructed rule model.
+Methods:
+transaction replay comparison
+regression test generation
+SME validation
+Goal: confirm behavioral equivalence with the existing rules engine.
+Phase 6 — Demonstration
+Days 19–20
+Demonstrate the PoC capabilities:
+rule explanation
+lineage tracing
+automated documentation
+regression test generation
+ad-hoc rule queries
+
 If you want, I can also produce one last thing that would make this proposal **exceptionally strong technically**:
 
 A **very simple technology stack slide** (LLM, vector DB, rule graph store, ingestion tools) that answers the inevitable question:
