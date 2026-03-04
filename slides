@@ -405,3 +405,88 @@ If you want, I can also produce one last thing that would make this proposal **e
 A **very simple technology stack slide** (LLM, vector DB, rule graph store, ingestion tools) that answers the inevitable question:
 
 > “What would we actually build this with?”
+
+
+Below is the **additional slide** you can add to the deck.
+It emphasizes **learning outcomes and reuse potential**, which is particularly compelling given the system is **~40 years old** and representative of many legacy rule engines across financial institutions.
+
+---
+
+# Slide 6 — What We Will Learn & Reuse Potential
+
+## Key Learning Objectives
+
+This PoC will help us understand how effectively AI can analyze and structure knowledge from long-lived financial systems.
+
+Specifically, we will learn:
+
+* how accurately rule chains can be reconstructed from mapping tables and legacy code
+* how well AI can generate clear explanations of rule behavior
+* how reliably regression tests can be generated from historical input/output data
+* how effective lineage analysis is for tracing sub-ledger inputs to GL outputs
+* how practical it is to construct a **canonical rule model (IR)** for a mature rules engine
+
+The system under study has evolved over approximately **40 years**, making it an ideal test case for this approach.
+
+---
+
+## Reuse Potential Across Legacy Platforms
+
+Many enterprise systems share the same architectural pattern:
+
+```text
+mapping tables
++ rule chains
++ procedural code
++ SME knowledge
+```
+
+Examples commonly found across financial institutions include:
+
+* accounting allocation engines
+* reconciliation rule systems
+* settlement and payment routing rules
+* product mapping engines
+* regulatory reporting transformation rules
+* ETL and data transformation pipelines
+
+These systems often have similar characteristics:
+
+* decades of accumulated logic
+* limited documentation
+* heavy reliance on SME knowledge
+
+---
+
+## Strategic Reuse Opportunity
+
+If the PoC proves successful, the same approach can be applied to other legacy rule systems across the organization.
+
+The reusable framework would include:
+
+* artifact ingestion tools
+* rule extraction agents
+* canonical rule modeling
+* AI knowledge interfaces
+
+This would allow the organization to progressively convert complex legacy rule systems into **transparent, explainable knowledge platforms**.
+
+---
+
+## Long-Term Impact
+
+Instead of treating legacy systems purely as operational assets, this approach enables us to convert them into **structured institutional knowledge**.
+
+This improves:
+
+* system transparency
+* change safety
+* modernization readiness
+* onboarding of new engineers and analysts
+
+Over time, this capability could significantly reduce the operational burden associated with maintaining decades-old rule systems.
+
+---
+
+If you'd like, I can also give you **one small improvement that will make the deck even more convincing to technical leadership**: a **very short slide titled “Why This System Is the Perfect Candidate for a PoC”** highlighting that a **40-year-old rules engine with mapping tables is exactly the kind of system AI can unlock value from.**
+
