@@ -1,0 +1,346 @@
+Below is a **PowerPoint-ready version** of the deck with:
+
+* **clean slide titles**
+* **reduced text (presentation style)**
+* **speaker notes** so you know what to say
+* **consistent structure**
+
+This format works well for **middle management / engineering leadership reviews**.
+
+---
+
+# Slide 1 — Title
+
+## AI-Assisted Rules Knowledge System
+
+### 20-Day Proof of Concept
+
+**Objective**
+
+Demonstrate that AI can convert a **40-year-old rules engine** into a **transparent, queryable knowledge system** without modifying production.
+
+**Artifacts analyzed**
+
+* Mapping tables
+* Legacy code (C / COBOL)
+* Historical transactions
+
+**Outcome**
+
+Build a **Canonical Rule Model (IR)** enabling rule explanation, lineage tracing, and automated documentation.
+
+---
+
+### Speaker Notes
+
+We are proposing a short proof of concept to see whether modern AI techniques can help us extract and structure the knowledge embedded in our rules engine.
+The idea is not to change the system — only to build a **knowledge layer that understands it**.
+
+---
+
+# Slide 2 — Architecture
+
+## AI-Assisted Rules Knowledge System
+
+```mermaid
+flowchart LR
+
+A[Mapping Tables] --> D[Artifact Ingestion]
+B[Legacy Code] --> D
+C[Test Transactions] --> D
+
+D --> E[Rule Extraction Agents]
+
+E --> F[Canonical Rule Model IR]
+
+F --> G[Rules Knowledge Base]
+
+G --> H[Rule Explanation]
+G --> I[Lineage Analysis]
+G --> J[Regression Tests]
+G --> K[Impact Analysis]
+
+G --> L[Query Interface]
+```
+
+**Key Layers**
+
+* Artifact ingestion
+* Rule extraction
+* Canonical rule model
+* AI knowledge interface
+
+---
+
+### Speaker Notes
+
+The system ingests artifacts describing the rules, reconstructs a structured rule model, and exposes it through an AI interface that supports explanations and analysis.
+
+---
+
+# Slide 3 — Rule Graph
+
+## Converting Mapping Tables into Rule Chains
+
+```mermaid
+flowchart LR
+
+A[Subledger Record]
+
+B[Mapping Rule
+Product → Category]
+
+C[Allocation Rule
+Allocate by Desk]
+
+D[Distribution Rule
+Split by Cost Center]
+
+E[GL Posting]
+
+A --> B
+B --> C
+C --> D
+D --> E
+```
+
+**Result**
+
+Rules become a **dependency graph** showing how data flows through the system.
+
+---
+
+### Speaker Notes
+
+Instead of rules being hidden across tables and programs, we represent them as a graph of rule steps and dependencies.
+
+---
+
+# Slide 4 — Canonical Rule Model
+
+## Example Intermediate Representation
+
+| Rule | Step | Type         | Input              | Output             |
+| ---- | ---- | ------------ | ------------------ | ------------------ |
+| R17  | 1    | Mapping      | PRODUCT_TYPE       | CATEGORY           |
+| R17  | 2    | Mapping      | CATEGORY           | GL_ACCOUNT         |
+| R17  | 3    | Allocation   | AMOUNT             | DESK_AMOUNT        |
+| R17  | 4    | Distribution | DESK_AMOUNT        | COST_CENTER_AMOUNT |
+| R17  | 5    | Posting      | COST_CENTER_AMOUNT | GL_ENTRY           |
+
+Each rule step references:
+
+* mapping row IDs
+* code locations
+* example transactions
+
+---
+
+### Speaker Notes
+
+This model is simple but powerful.
+It captures rule order, inputs, outputs, and references to original artifacts.
+
+---
+
+# Slide 5 — Fast Rule Reconstruction
+
+## Rapid Rule Chain Discovery
+
+Three techniques allow reconstruction without manual reverse engineering.
+
+**Dependency Graph**
+
+Link rule outputs to downstream rule inputs.
+
+**Rule Ordering**
+
+Infer precedence from:
+
+* priority columns
+* specificity
+* effective dates
+
+**Behavioral Validation**
+
+Replay transactions through both systems.
+
+---
+
+### Speaker Notes
+
+These techniques allow us to reconstruct rule logic quickly while validating behavior empirically.
+
+---
+
+# Slide 6 — Validation Strategy
+
+## Ensuring Behavioral Equivalence
+
+**Transaction Replay**
+
+Compare outputs from:
+
+* existing rules engine
+* reconstructed rule model
+
+**Rule Chain Comparison**
+
+Confirm inferred rule chains match execution logic.
+
+**Regression Tests**
+
+Automatically generate test cases.
+
+**SME Validation**
+
+Review rule explanations and lineage.
+
+---
+
+### Speaker Notes
+
+Validation is critical.
+We confirm that the reconstructed rule model produces the same results as the production system.
+
+---
+
+# Slide 7 — Business & Technology Value
+
+## Business Value
+
+* clearer understanding of financial rules
+* faster impact analysis
+* improved documentation
+* reduced SME dependency
+* better audit support
+
+## Technology Value
+
+* structured rule model
+* automated documentation
+* regression test generation
+* rule dependency analysis
+
+---
+
+### Speaker Notes
+
+This is fundamentally about turning a complex legacy system into **institutional knowledge**.
+
+---
+
+# Slide 8 — Productivity Impact
+
+## Rule Investigation Today vs With Knowledge System
+
+| Task            | Current    | With System |
+| --------------- | ---------- | ----------- |
+| Explain rule    | hours      | seconds     |
+| Trace lineage   | hours      | seconds     |
+| Impact analysis | hours-days | minutes     |
+| Identify tests  | days       | minutes     |
+
+**Outcome**
+
+Significant reduction in investigation effort.
+
+---
+
+### Speaker Notes
+
+This is the operational benefit.
+Investigations that currently take hours or days could take seconds or minutes.
+
+---
+
+# Slide 9 — Risk & Control Considerations
+
+**Read-Only Operation**
+
+No modification of production systems.
+
+**Data Governance**
+
+Uses controlled datasets and existing access policies.
+
+**Traceable Outputs**
+
+All explanations reference:
+
+* mapping rows
+* code locations
+* transaction examples
+
+**Human Oversight**
+
+AI assists analysis but does not change rules.
+
+---
+
+### Speaker Notes
+
+This PoC operates safely within our existing governance framework.
+
+---
+
+# Slide 10 — 20-Day Execution Plan
+
+**Days 1–4**
+
+Artifact extraction.
+
+**Days 5–9**
+
+Rule model construction.
+
+**Days 10–14**
+
+AI knowledge interface.
+
+**Days 15–18**
+
+Validation and regression testing.
+
+**Days 19–20**
+
+Demonstration.
+
+---
+
+## Deliverables
+
+* canonical rule model
+* AI query interface
+* lineage tracing
+* automated documentation
+* regression tests
+* validation results
+
+---
+
+### Speaker Notes
+
+At the end of the PoC we demonstrate a working system that can analyze and explain rule behavior.
+
+---
+
+# Final Deck Characteristics
+
+This version is:
+
+* **10 slides**
+* **clean presentation style**
+* **low text density**
+* **clear narrative**
+* **aligned with the proposal document**
+
+It should take **about 5–6 minutes to present**.
+
+---
+
+If you want, I can also produce one last thing that would make this proposal **exceptionally strong technically**:
+
+A **very simple technology stack slide** (LLM, vector DB, rule graph store, ingestion tools) that answers the inevitable question:
+
+> “What would we actually build this with?”
